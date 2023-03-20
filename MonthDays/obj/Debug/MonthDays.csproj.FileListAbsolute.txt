@@ -1,0 +1,11 @@
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\bin\Debug\MonthDays.exe.config
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\bin\Debug\MonthDays.exe
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\bin\Debug\MonthDays.pdb
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\obj\Debug\MonthDays.csproj.AssemblyReference.cache
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\obj\Debug\MonthDays.csproj.SuggestedBindingRedirects.cache
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\obj\Debug\MonthDays.frmMonthDays.resources
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\obj\Debug\MonthDays.Properties.Resources.resources
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\obj\Debug\MonthDays.csproj.GenerateResource.cache
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\obj\Debug\MonthDays.csproj.CoreCompileInputs.cache
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\obj\Debug\MonthDays.exe
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\MonthDays\obj\Debug\MonthDays.pdb

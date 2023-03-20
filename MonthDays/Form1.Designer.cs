@@ -86,6 +86,7 @@
             this.btnListele.TabIndex = 4;
             this.btnListele.Text = "Listele";
             this.btnListele.UseVisualStyleBackColor = true;
+            this.btnListele.Click += new System.EventHandler(this.btnListele_Click);
             // 
             // btnCikis
             // 
@@ -95,6 +96,7 @@
             this.btnCikis.TabIndex = 5;
             this.btnCikis.Text = "Çıkış";
             this.btnCikis.UseVisualStyleBackColor = true;
+            this.btnCikis.Click += new System.EventHandler(this.btnCikis_Click);
             // 
             // lstGünler
             // 
@@ -106,6 +108,7 @@
             // 
             // cmbAy
             // 
+            this.cmbAy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAy.FormattingEnabled = true;
             this.cmbAy.Location = new System.Drawing.Point(160, 94);
             this.cmbAy.Name = "cmbAy";
