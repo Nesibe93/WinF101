@@ -1,0 +1,2 @@
+﻿﻿-- Ekrandaki bulunan RadioBox butonunun değerine göre , 
+istenilen miktarda değer artırma / azaltma

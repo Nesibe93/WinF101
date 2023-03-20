@@ -1,0 +1,2 @@
+﻿Ekranda bulunan 1.checkedListBox dan seçilen bir değeri listBox içinde gösterme
+Eğer listBoxta

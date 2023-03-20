@@ -1,0 +1,15 @@
+﻿Burada çok basit olarak iki sayının toplamını göstereceğiz
+
+dolayısıyla ekrana 2 tane textbox koyacağız
+bir tane buton olacak
+sonucu ilk aşamada MessageBox kullanarak vereceğiz
+programdan çıkış tuşu da olsun
+Formun adı anlamlı bir şekilde formun üstünde gözüksün 
+
+Sonucu bu sefer MessageBox yerine bir label Comp.içinde olacak şekilde veriniz.
+
+|  Soru : |
+-> 4 işlem yapılacak (+,-,*,/)
+-> bu işlemler seçenekli olacak.yani combobox komponentini kullanabiliriz... 
+bu komponentten seçilen seçeneğe göre işlemler yapılacaktır.(Switch-Case)
+-> boşluk kontrollü yapıda sonuç yazılacak

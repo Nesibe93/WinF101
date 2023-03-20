@@ -1,0 +1,13 @@
+﻿Yapacağımız olay
+Combobox kullanıcaz
+form üzerinde bir adet label,buton,combobox olacak
+butona basıldığında combobox elemanları doldurulacak
+(1 den 20 ye kadar sayılar)
+İçerik şöyle olacak
+Comboboxın içeriği
+1.Sayı
+2.Sayı
+.
+.
+.
+20.Sayı

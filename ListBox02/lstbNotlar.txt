@@ -1,0 +1,16 @@
+﻿** Listbox
+
+-> Tabiki bir tane buton olacak
+-> Ekranda 3 tane textbox olsun (random baş ve son değerler için)
+-> ve kaç tane üretmesini istediğimi belirten
+-> her ikisine de ayrı ayrı değerler girelim
+-> Bu değerler arasında random sayı üretelim
+-> Listbox ı buna göre dolduralım
+-> 1.textbox illaki küçük sayı
+-> 2.textbox illaki büyük sayı olsun
+-> Ters şekilde girişlere izin verilmesin
+-> Yani 1.textbox 5
+-> 2.textbox 50
+-> 5 ile 50 arasında sayı üretilecek (üretilmesi istenen adet kadar)
+-> Bunu da bir label komp. içinde mesaj olarak verilebilir
+-> mesaj öreği : 5 ila 50 arasında 100 adet sayı üretilmiştir..gibi

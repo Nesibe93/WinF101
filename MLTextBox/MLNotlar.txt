@@ -1,0 +1,3 @@
+﻿** MLTextbox
+
+-> 1 ile 10 arasında rastgele "ondalıklı" sayı üretip bunları bir textbox içinde gösteriniz

@@ -1,0 +1,11 @@
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\bin\Debug\DateDiffer.exe.config
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\bin\Debug\DateDiffer.exe
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\bin\Debug\DateDiffer.pdb
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\obj\Debug\DateDiffer.csproj.AssemblyReference.cache
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\obj\Debug\DateDiffer.csproj.SuggestedBindingRedirects.cache
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\obj\Debug\DateDiffer.Form1.resources
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\obj\Debug\DateDiffer.Properties.Resources.resources
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\obj\Debug\DateDiffer.csproj.GenerateResource.cache
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\obj\Debug\DateDiffer.csproj.CoreCompileInputs.cache
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\obj\Debug\DateDiffer.exe
+C:\Users\Nesibe\source\repos\WinF101_Live\DateDiffer\obj\Debug\DateDiffer.pdb
