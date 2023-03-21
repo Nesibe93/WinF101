@@ -10,8 +10,8 @@ using System.Windows.Forms;
 
 namespace PictureBox
 {
+    
 
-  
     public partial class frmPictureBox : Form
     {
         // Global Değişkenler
@@ -23,6 +23,7 @@ namespace PictureBox
             InitializeComponent();
         }
 
+        
         private void frmPictureBox_KeyDown(object sender, KeyEventArgs e)
         {
 
