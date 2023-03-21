@@ -9,3 +9,4 @@ C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\PictureBox\obj\Debug\PictureBox
 C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\PictureBox\obj\Debug\PictureBox.csproj.CoreCompileInputs.cache
 C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\PictureBox\obj\Debug\PictureBox.exe
 C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\PictureBox\obj\Debug\PictureBox.pdb
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\PictureBox\obj\Debug\PictureBox.frmSec.resources

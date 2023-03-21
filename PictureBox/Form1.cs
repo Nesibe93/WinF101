@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 namespace PictureBox
 {
+
+  
     public partial class frmPictureBox : Form
     {
         // Global Değişkenler
         int formYukseklik, formGenislik,pctrbGenislik, pctrbYukseklik;
 
+        
         public frmPictureBox()
         {
             InitializeComponent();
@@ -82,8 +85,8 @@ namespace PictureBox
 
         private void frmPictureBox_Load(object sender, EventArgs e)
         {
-            // form açıldığında (0,0) lokasyonuna taşıyorum
-            //pctrbPicture.Location = new Point(0, 0);
+            //form açıldığında(0,0) lokasyonuna taşıyorum
+            pctrbPicture.Location = new Point(0, 0);
 
             frmPictureBox frmPictureBox = new frmPictureBox();
 
@@ -94,6 +97,9 @@ namespace PictureBox
             pctrbYukseklik = frmPictureBox.Height;
 
             MessageBox.Show(" Form Genişlik : " + frmPictureBox.Width.ToString() + " Yükseklik : " + frmPictureBox.Height.ToString());
+
+            pctrbPicture.ImageLocation = lblFileName.Text;
+
 
         }
     }

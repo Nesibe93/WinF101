@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.btnSelect = new System.Windows.Forms.Button();
+            this.openfdSec = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // btnSelect
@@ -40,6 +41,11 @@
             this.btnSelect.TabIndex = 0;
             this.btnSelect.Text = "SEÇ";
             this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // openfdSec
+            // 
+            this.openfdSec.FileName = "openFileDialog1";
             // 
             // frmSec
             // 
@@ -59,5 +65,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.OpenFileDialog openfdSec;
     }
 }

@@ -16,7 +16,7 @@ namespace PictureBox
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmPictureBox());
+            Application.Run(new frmSec());
         }
     }
 }
