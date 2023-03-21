@@ -28,7 +28,7 @@ namespace MonthDays
             //2. cmbAy isimli combobox ın otomatik olarak ay adlarıyla doldurulsun..Ay adları değiştirilemesin.
             //
 
-            int yil = Convert.ToInt32((DateTime.Now.Year)); // Default tarihin yıl bilgisine ulaştık
+            int yil = Convert.ToInt32(DateTime.Now.Year); // Default tarihin yıl bilgisine ulaştık
             
             nmrcUDYear.Value = yil; // value property
             for (int i = 0 ; i < 12; i++) // 12 ay olduğu için 12 yazdık
@@ -58,11 +58,11 @@ namespace MonthDays
             // seçilen ayda kaç tane gün var onu öğrenmem lazım
             int totalDaysCount = DateTime.DaysInMonth(yil, ay);
 
-            for (int i = 1 ; i < totalDaysCount; i++)
+            for (int i = 1 ; i <= totalDaysCount; i++)
             {
                 lstGünler.Items.Add(tarih.Day + " " + " " + cmbAy.Text + " " + formatTR.DayNames[(int)tarih.DayOfWeek]);
 
-                tarih = tarih.AddDays(i); // Birer gün olarak ilk tarihten son güne kadar dönmesi için
+                tarih = tarih.AddDays(1); // Birer gün olarak ilk tarihten son güne kadar dönmesi için
             }
         }
     }
