@@ -87,6 +87,28 @@ namespace ADO01
             }
         }
 
-       
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            // ShowData("I")
+
+            frmADO01_Detail frmADO01_Detail = new frmADO01_Detail();
+
+            frmADO01_Detail.ShowDialog();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            // ShowData("U")
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            // Delete
+        }
+
+        private void ShowData(string prmMode)
+        {
+            // Bu metod üzerine aldığı parametreye göre 2. bir form açacak. 2 .form istenilen işlem (I,U) değerine göre ekrana gelecek. I/U işlemini bu yeni form üzerinde yapacak. "D" işlemi şuan bulunulan formdan yapacak
+        }
     }
 }

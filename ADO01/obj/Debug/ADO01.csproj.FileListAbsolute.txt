@@ -9,3 +9,4 @@ C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.csproj.Ge
 C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.csproj.CoreCompileInputs.cache
 C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.exe
 C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.pdb
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.frmADO01_Detail.resources

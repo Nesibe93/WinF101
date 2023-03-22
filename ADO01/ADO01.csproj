@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO01_Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ADO01_Detail.Designer.cs">
+      <DependentUpon>ADO01_Detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmADO01.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ADO01_Detail.resx">
+      <DependentUpon>ADO01_Detail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmADO01.resx">
       <DependentUpon>frmADO01.cs</DependentUpon>
     </EmbeddedResource>
