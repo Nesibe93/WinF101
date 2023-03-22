@@ -24,5 +24,24 @@ namespace ADO01
         {
             this.Close(); // formu kapatacak
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            string vs_SQLTest;
+
+            // Bu form her iki işe de yarayacağı için
+            // hangi modda olduğumu anlamam lazım
+            switch (Mode)
+            {
+                // Bazı SQL Injectionları engellemek açısından ve
+                // daha sade bir komut satırı olması için
+                // parametrik kullanım tercih edildi
+                case "U":
+
+
+                default:
+                    break;
+            }
+        }
     }
 }

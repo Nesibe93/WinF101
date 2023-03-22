@@ -148,6 +148,7 @@ namespace ADO01
 
         private void datagwCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // aynı sanki Update butonuna basılmış gibi davranacak
             ShowData("U");
         }
     }
