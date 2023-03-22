@@ -44,6 +44,7 @@
             this.datagwCustomers.Name = "datagwCustomers";
             this.datagwCustomers.Size = new System.Drawing.Size(498, 400);
             this.datagwCustomers.TabIndex = 0;
+            this.datagwCustomers.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagwCustomers_CellDoubleClick);
             // 
             // btnCikis
             // 

@@ -139,9 +139,16 @@ namespace ADO01
                         datagwCustomers.CurrentRow.Cells[3].Value.ToString();
 
                     break;
+
+                    
             }
 
             frmADO01_Detail.ShowDialog();
+        }
+
+        private void datagwCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowData("U");
         }
     }
 }
