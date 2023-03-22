@@ -45,8 +45,22 @@ namespace ADO01
 
             datagwCustomers.RowHeadersVisible = false;
 
-            // DAtagRiddeki kolonları tek tek dolaşmak yerine tek bir satırı ayrıştırma
+            // DatagRiddeki kolonları tek tek dolaşmak yerine tek bir satırı ayrıştırma
             datagwCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // DataGriddeki kolonları DataGridin genişliğine göre ayarlama
+            datagwCustomers.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
+
+            // DataGridin üzerinde elle oynamayı yasaklama 
+            datagwCustomers.ReadOnly = true;
+            
+            // DataGridin üzerinde kullanıcının satır eklemesini ve silmesini yasaklama
+            datagwCustomers.AllowUserToAddRows = false;
+            datagwCustomers.AllowUserToDeleteRows = false;
+
+            // DataGridin satırlarının yüksekliğini ve genişliğini yasaklama
+            datagwCustomers.AllowUserToResizeRows = false;
         }
 
         private void BindGrid()
