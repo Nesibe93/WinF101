@@ -1,0 +1,11 @@
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\bin\Debug\ADO01.exe.config
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\bin\Debug\ADO01.exe
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\bin\Debug\ADO01.pdb
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.csproj.AssemblyReference.cache
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.csproj.SuggestedBindingRedirects.cache
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.frmADO01.resources
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.Properties.Resources.resources
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.csproj.GenerateResource.cache
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.csproj.CoreCompileInputs.cache
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.exe
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.pdb
