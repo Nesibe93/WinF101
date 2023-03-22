@@ -105,7 +105,27 @@ namespace ADO01
 
             if (dialogResult == DialogResult.Yes)
             {
-                vs_SQLTest = "DELETE FROM Customers WHERE CustomerID='" + datagwCustomers.CurrentRow.Cells[0].Value.ToString()+"'"; // CurrontRow : Seçili Satır. Seçili satırdaki 0. kolonda bulunan değeri alarak silme işlemini yapar
+
+                using (SqlConnection con = new SqlConnection(constring))
+                {
+                    vs_SQLTest = "DELETE FROM Customers WHERE CustomerID='" + datagwCustomers.CurrentRow.Cells[0].Value.ToString() + "'"; // CurrontRow : Seçili Satır. Seçili satırdaki 0. kolonda bulunan değeri alarak silme işlemini yapar
+                    using (SqlCommand cmd = new SqlCommand(vs_SQLTest,con))
+                    {
+                        cmd.CommandType = CommandType.Text;
+
+                        try
+                        {
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Bilgileriniz silindi...");
+                            BindGrid();
+                        }
+                        catch (Exception message)
+                        {
+                            MessageBox.Show("Hata : " + message.ToString());
+                        }
+                    }
+                }
             }
         }
 
@@ -145,7 +165,6 @@ namespace ADO01
                     frmADO01_Detail.txtCountry.Text =
                         datagwCustomers.CurrentRow.Cells[3].Value.ToString();
                     break;
-
             }
 
             frmADO01_Detail.ShowDialog();
