@@ -140,6 +140,8 @@ namespace ADO01
 
                     break;
             }
+
+            frmADO01_Detail.ShowDialog();
         }
     }
 }
