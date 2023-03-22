@@ -38,11 +38,11 @@ namespace ADO01
                 // daha sade bir komut satırı olması için
                 // parametrik kullanım tercih edildi
                 case "U":
-                    vs_SQLText = "UPDATE Customers SET";
+                    vs_SQLText = "UPDATE Customers SET ";
                   //  vs_SQLTest += "CompanyName = '" + txtCompanyName.Text + "'";
-                    vs_SQLText += "CompanyName = @CompanyName";
-                    vs_SQLText += "ContactName = @ContactName";
-                    vs_SQLText += "WHERE CustomerID = @CustomerID";
+                    vs_SQLText += "CompanyName = @CompanyName,";
+                    vs_SQLText += "ContactName = @ContactName ";
+                    vs_SQLText += "WHERE CustomerID = @CustomerID ";
                     // SQL text oluşturuldu..Parametreli
                     break;
 
@@ -67,11 +67,14 @@ namespace ADO01
 
                     try
                     {
+                        con.Open(); // Tanımlamış olduğum connection açılıyor
                         cmd.ExecuteNonQuery(); // çalıştırıyor..Sql textimi sql server tarafına gönderiyor
+                        MessageBox.Show("Bilgileriniz Güncellenmiştir..");
+                        this.Close();
                     }
-                    catch (Exception)
+                    catch (Exception message)
                     {
-
+                        MessageBox.Show(message.ToString());
                         throw;
                     }
                 }
