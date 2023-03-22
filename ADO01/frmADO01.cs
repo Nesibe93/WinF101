@@ -19,6 +19,7 @@ namespace ADO01
 
         string constring = @"Data Source=DESKTOP-V653CLI\SQLEXPRESS01;Initial Catalog=Northwind;Integrated Security=True"; // slash varsa string gibi anlaması için başına "@" koyuyoruz
 
+        string vs_SQLTest;
         public frmADO01()
         {
             InitializeComponent();
@@ -82,7 +83,6 @@ namespace ADO01
                             datagwCustomers.DataSource = dataSet.Tables[0]; // dataSet oluştu..içine table taşındı ve DataGridin içinde görülebilir hale geldi
                         }
                     }
-
                 }
             }
         }
@@ -90,16 +90,23 @@ namespace ADO01
         private void btnAdd_Click(object sender, EventArgs e)
         {
             ShowData("I"); // metoduma Insert işlemi yapabilmek için I parametresini gönderdim
+            BindGrid();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             ShowData("U"); //metoduma Update işlemi yapabilmek için U parametresini gönderdim
+            BindGrid();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            // Delete
+            DialogResult dialogResult = MessageBox.Show("Veriyi silmek istediğinize emin misiniz?","İşlem Onayı",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                vs_SQLTest = "DELETE FROM Customers WHERE CustomerID='" + datagwCustomers.CurrentRow.Cells[0].Value.ToString()+"'"; // CurrontRow : Seçili Satır. Seçili satırdaki 0. kolonda bulunan değeri alarak silme işlemini yapar
+            }
         }
 
         private void ShowData(string prmMode)
@@ -117,9 +124,9 @@ namespace ADO01
                 case "I":
                     // Initial Değerler veriliyor...
                     frmADO01_Detail.txtCustomerID.Enabled = true;
-                    frmADO01_Detail.txtCompanyName.Text = " ";
-                    frmADO01_Detail.txtContactName.Text = " ";
-                    frmADO01_Detail.txtCountry.Text = " ";
+                    frmADO01_Detail.txtCompanyName.Text = "";
+                    frmADO01_Detail.txtContactName.Text = "";
+                    frmADO01_Detail.txtCountry.Text = "";
 
                     frmADO01_Detail.txtCustomerID.Select();
 
@@ -137,13 +144,13 @@ namespace ADO01
                         datagwCustomers.CurrentRow.Cells[2].Value.ToString();
                     frmADO01_Detail.txtCountry.Text =
                         datagwCustomers.CurrentRow.Cells[3].Value.ToString();
-
                     break;
 
-                    
             }
 
             frmADO01_Detail.ShowDialog();
+
+            BindGrid();
         }
 
         private void datagwCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

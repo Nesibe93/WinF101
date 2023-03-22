@@ -41,9 +41,14 @@ namespace ADO01
                     vs_SQLText = "UPDATE Customers SET ";
                   //  vs_SQLTest += "CompanyName = '" + txtCompanyName.Text + "'";
                     vs_SQLText += "CompanyName = @CompanyName,";
-                    vs_SQLText += "ContactName = @ContactName ";
+                    vs_SQLText += "ContactName = @ContactName,";
+                    vs_SQLText += "Country = @Country ";
                     vs_SQLText += "WHERE CustomerID = @CustomerID ";
                     // SQL text oluşturuldu..Parametreli
+                    break;
+
+                case "I":
+                    vs_SQLText = "INSERT INTO Customers (CustomerID,CompanyName,ContactName,Country) Values (@CustomerID,@CompanyName,@ContactName,@Country)";
                     break;
 
                 default:
@@ -62,7 +67,6 @@ namespace ADO01
                         txtContactName.Text);
                     cmd.Parameters.AddWithValue("Country",
                         txtCountry.Text);
-
                     cmd.CommandType = CommandType.Text;
 
                     try
