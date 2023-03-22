@@ -89,16 +89,12 @@ namespace ADO01
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // ShowData("I")
-
-            frmADO01_Detail frmADO01_Detail = new frmADO01_Detail();
-
-            frmADO01_Detail.ShowDialog();
+            ShowData("I"); // metoduma Insert işlemi yapabilmek için I parametresini gönderdim
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            // ShowData("U")
+            ShowData("U"); //metoduma Update işlemi yapabilmek için U parametresini gönderdim
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -109,6 +105,36 @@ namespace ADO01
         private void ShowData(string prmMode)
         {
             // Bu metod üzerine aldığı parametreye göre 2. bir form açacak. 2 .form istenilen işlem (I,U) değerine göre ekrana gelecek. I/U işlemini bu yeni form üzerinde yapacak. "D" işlemi şuan bulunulan formdan yapacak
+
+            frmADO01_Detail frmADO01_Detail = new frmADO01_Detail();
+
+            frmADO01_Detail.Mode = prmMode; // gelen parametreyi direkt olarak detay formuna pasladım
+
+            // gelen parametreye göre diğer detay formun elemanlarını ayarlıyorum
+
+            switch (prmMode)
+            {
+                case "I":
+                    // Initial Değerler veriliyor...
+                    frmADO01_Detail.txtCustomerID.Enabled = true;
+                    frmADO01_Detail.txtCompanyName.Text = " ";
+                    frmADO01_Detail.txtContactName.Text = " ";
+                    frmADO01_Detail.txtCountry.Text = " ";
+
+                    frmADO01_Detail.txtCustomerID.Select();
+
+                    break;
+
+                case "U":
+                    // Initial Değerler veriliyor...
+                    frmADO01_Detail.txtCustomerID.Enabled = false;
+                    frmADO01_Detail.txtCompanyName.Text = 
+                        datagwCustomers.CurrentRow.Cells[0].Value.ToString(); // DataGrid deki seçili satırdaki hücrenin değerini textbox ın içine gönder
+                    frmADO01_Detail.txtContactName.Text = " ";
+                    frmADO01_Detail.txtCountry.Text = " ";
+
+                    break;
+            }
         }
     }
 }

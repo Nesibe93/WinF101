@@ -75,7 +75,7 @@
             this.txtCustomerID.Location = new System.Drawing.Point(202, 34);
             this.txtCustomerID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCustomerID.Name = "txtCustomerID";
-            this.txtCustomerID.Size = new System.Drawing.Size(148, 25);
+            this.txtCustomerID.Size = new System.Drawing.Size(95, 25);
             this.txtCustomerID.TabIndex = 1;
             // 
             // txtCompanyName
@@ -124,12 +124,13 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(392, 287);
+            this.btnClose.Location = new System.Drawing.Point(267, 233);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(83, 38);
+            this.btnClose.Size = new System.Drawing.Size(83, 31);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Kapat";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // frmADO01_Detail
             // 
@@ -161,12 +162,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtCustomerID;
-        private System.Windows.Forms.TextBox txtCompanyName;
-        private System.Windows.Forms.TextBox txtContactName;
         private System.Windows.Forms.Label Label4;
-        private System.Windows.Forms.TextBox txtCountry;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
+        public System.Windows.Forms.TextBox txtCustomerID;
+        public System.Windows.Forms.TextBox txtCompanyName;
+        public System.Windows.Forms.TextBox txtContactName;
+        public System.Windows.Forms.TextBox txtCountry;
     }
 }
