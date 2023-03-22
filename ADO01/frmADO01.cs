@@ -41,6 +41,12 @@ namespace ADO01
         private void PrepareGrid()
         {
             datagwCustomers.AutoGenerateColumns = true; // datagrid in otomatik olarak database tablosuna bakıp gridin kolonlarını yaratmasını istemiyorum. Manuel
+            // Eğer DataGridin en baş taraftaki kolonu 'RowHeader' görmek istemiyorsam
+
+            datagwCustomers.RowHeadersVisible = false;
+
+            // DAtagRiddeki kolonları tek tek dolaşmak yerine tek bir satırı ayrıştırma
+            datagwCustomers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void BindGrid()
