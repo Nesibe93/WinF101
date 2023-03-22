@@ -128,10 +128,15 @@ namespace ADO01
                 case "U":
                     // Initial Değerler veriliyor...
                     frmADO01_Detail.txtCustomerID.Enabled = false;
-                    frmADO01_Detail.txtCompanyName.Text = 
+
+                    frmADO01_Detail.txtCustomerID.Text =
                         datagwCustomers.CurrentRow.Cells[0].Value.ToString(); // DataGrid deki seçili satırdaki hücrenin değerini textbox ın içine gönder
-                    frmADO01_Detail.txtContactName.Text = " ";
-                    frmADO01_Detail.txtCountry.Text = " ";
+                    frmADO01_Detail.txtCompanyName.Text = 
+                        datagwCustomers.CurrentRow.Cells[1].Value.ToString(); 
+                    frmADO01_Detail.txtContactName.Text =
+                        datagwCustomers.CurrentRow.Cells[2].Value.ToString();
+                    frmADO01_Detail.txtCountry.Text =
+                        datagwCustomers.CurrentRow.Cells[3].Value.ToString();
 
                     break;
             }
