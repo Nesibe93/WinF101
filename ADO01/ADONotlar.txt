@@ -9,3 +9,5 @@ Products formunda sekmeli (tabbed) yardımıyla, bir sekmede bir grid olacak
 belirlenen tablo alanları(Ürün adı,kategorisi,Tedarikçisi) için bir sorgulama kısmı olacak..
 sorgulamalar için uygun componentler kullanılarak(örnek kategori ve tedarikçi için combobox yani elle giriş yok bu iki bilgi için) sorgu sonucu ekrandaki datagridde gösterilecek. Datagridde seçilen kayıt ayrı bir sekmede detayı gösterilecek
 Yeni veri kayıt,güncelleme,silme işlemleri yapılacak
+
+* Products ekranı ilk geldiğinde Products DataGrid dolu olarak gelecek(ProductName,CategoryName,Suppliers,CompanyName,UnitsInStock,Discontinued) bilgileriyle
