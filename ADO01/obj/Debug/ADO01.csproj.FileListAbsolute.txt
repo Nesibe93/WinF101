@@ -10,3 +10,5 @@ C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.csproj.Co
 C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.exe
 C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.pdb
 C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.frmADO01_Detail.resources
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.frmMain.resources
+C:\Users\Nesibe\OneDrive\Belgeler\GitHub\WinF101\ADO01\obj\Debug\ADO01.frmProducts.resources
