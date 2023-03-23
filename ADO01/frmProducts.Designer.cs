@@ -143,6 +143,7 @@
             this.cmbQCategory.Name = "cmbQCategory";
             this.cmbQCategory.Size = new System.Drawing.Size(133, 25);
             this.cmbQCategory.TabIndex = 2;
+
             // 
             // txtQProductName
             // 

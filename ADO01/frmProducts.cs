@@ -106,8 +106,8 @@ namespace ADO01
 
 
             BindGrid(vs_SQLCommandAna);
-
             GetCategory();
+            GetSuppliers();
         }
 
         private void GetCategory()
@@ -147,12 +147,53 @@ namespace ADO01
                 }
             }
         }
+
+        private void GetSuppliers()
+        {
+            // SQL tarafındaki Category Tablosundan sorgulamada kullanabilmek için sadece CategoryID ve CategoryName alanlarını almalıyım
+
+            using (SqlConnection con = new SqlConnection(constring))
+            {
+                vs_SQLCommand = "SELECT SupplierID,CompanyName FROM Suppliers";
+
+                using (SqlCommand cmd = new SqlCommand(vs_SQLCommand, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+
+                    using (SqlDataAdapter sqlda = new SqlDataAdapter(cmd))
+                    {
+                        using (DataSet dataSet = new DataSet())
+                        {
+                            sqlda.Fill(dataSet); // adaptörün yarattığı DataSeti doldursun
+
+                            // comboboxın ilk satırında -- Hepsi -- yazsın
+
+                            // data tablolarında olmayan bir satırı oluşturmak için kullanılan bir class var(DataRow classı) combo içine ilk olarak onun gözükmesini sağlıyacağım
+
+                            DataRow newRow = dataSet.Tables[0].NewRow();
+                            newRow["SupplierID"] = 0;
+                            newRow["CompanyName"] = "---HEPSI---";
+                            dataSet.Tables[0].Rows.InsertAt(newRow, 0);
+
+
+                            cmbQSupplier.DataSource = dataSet.Tables[0];
+                            cmbQSupplier.ValueMember = "SupplierID";
+                            cmbQSupplier.DisplayMember = "CompanyName";
+                        }
+
+                    }
+                }
+            }
+        }
+
+
+        // TabControl drawmode->ownerdrawfixed'da sekmelerin ismi gözükmüyor.Çiziyoruz
         private void tabcProducts_DrawItem(object sender, DrawItemEventArgs e)
         {
             // Sekmenin arka planını ve yazı rengini belirleyin
             Brush backBrush = new SolidBrush(Color.LightBlue);
             Brush foreBrush = new SolidBrush(Color.Black);
-
+            
             // Sekme başlığı metnini alın
             string tabText = this.tabcProducts.TabPages[e.Index].Text;
 
@@ -166,10 +207,6 @@ namespace ADO01
                 e.Bounds.Left + (e.Bounds.Width - textSize.Width) / 2,
                 e.Bounds.Top + (e.Bounds.Height - textSize.Height) / 2);
 
-            // Sekmenin başlığı fontunu kalın olarak ayarlayın
-            Font tabFont = new Font(this.Font, FontStyle.Bold);
-            //tabFont = this.tabcProducts.Font;
-
             // Fırçaları serbest bırakın
             backBrush.Dispose();
             foreBrush.Dispose();
@@ -180,11 +217,27 @@ namespace ADO01
             vs_SQLQuery = "";
             if (txtQProductName.Text != "") // adam textbox a bir şey girmiş mi
             {
-                vs_SQLQuery = " AND ProductName LIKE '%" + 
+                vs_SQLQuery += "AND ProductName LIKE '%" + 
                     txtQProductName.Text + "%'";
             }
 
+            // Not: Category combosundaki değişimi eğer 
+
+            if (cmbQCategory.SelectedIndex > 0)
+            {
+                vs_SQLQuery += "AND Products.CategoryID =" + cmbQCategory.SelectedValue;
+                
+            }
+
+            if (cmbQSupplier.SelectedIndex > 0)
+            {
+                vs_SQLQuery += "AND Products.SupplierID=" + cmbQSupplier.SelectedValue;
+            }
+
+
             BindGrid(vs_SQLCommandAna + vs_SQLQuery);
+
         }
+
     }
 }
