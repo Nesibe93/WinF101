@@ -186,18 +186,18 @@ namespace ADO01
             }
         }
 
-
+        #region TabControl
         // TabControl drawmode->ownerdrawfixed'da sekmelerin ismi gözükmüyor.Çiziyoruz
         private void tabcProducts_DrawItem(object sender, DrawItemEventArgs e)
         {
             // Sekmenin arka planını ve yazı rengini belirleyin
             Brush backBrush = new SolidBrush(Color.LightBlue);
             Brush foreBrush = new SolidBrush(Color.Black);
-            
+
             // Sekme başlığı metnini alın
             string tabText = this.tabcProducts.TabPages[e.Index].Text;
 
-           
+
             // Metnin boyutunu alın
             SizeF textSize = e.Graphics.MeasureString(tabText, this.Font);
 
@@ -211,6 +211,8 @@ namespace ADO01
             backBrush.Dispose();
             foreBrush.Dispose();
         }
+
+        #endregion
 
         private void btnQuery_Click(object sender, EventArgs e)
         {
