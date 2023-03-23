@@ -16,7 +16,9 @@ namespace ADO01
         // Global kısım
         // Aşağıdaki değişken Veritabanına bağlanabilmek için gerekli olan bağlantı cümleciğidir.Şu makinaya ..şu databaseden bağlanmak istiyorum
         string constring = @"Data Source=DESKTOP-V653CLI\SQLEXPRESS01;Initial Catalog=Northwind;Integrated Security=True";
-        string vs_SQLCommand = ""; // SQL Komutlarını içerecek
+
+        string vs_SQLCommandAna = ""; // SQL komutlarımı içerecek
+        string vs_SQLCommand = ""; // combo için
         string vs_SQLQuery = ""; // SQL Query texti içerecek
         string Mode = "";
 
@@ -55,7 +57,7 @@ namespace ADO01
             datagwProducts.AllowUserToResizeRows = false;
         }
 
-        private void BindGrid()
+        private void BindGrid(string prmSQLText)
         {
             // DataGrid i dolduran bölüm
             // C# ın using kalıbı. ...bunu kullanarak demek
@@ -69,13 +71,13 @@ namespace ADO01
                 //WHERE ProductID > 0
                 #endregion
 
-                vs_SQLCommand = "SELECT ProductID, ProductName, Suppliers.CompanyName,Categories.CategoryName,UnitsInStock,Discontinued FROM Products ";
-                vs_SQLCommand = vs_SQLCommand + "INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID ";
-                vs_SQLCommand += "INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID ";
-                   vs_SQLCommand += "WHERE ProductID > 0";
+                //vs_SQLCommand = "SELECT ProductID, ProductName, Suppliers.CompanyName,Categories.CategoryName,UnitsInStock,Discontinued FROM Products ";
+                //vs_SQLCommand = vs_SQLCommand + "INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID ";
+                //vs_SQLCommand += "INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID ";
+                //   vs_SQLCommand += "WHERE ProductID > 0";
                 
 
-                using (SqlCommand cmd = new SqlCommand(vs_SQLCommand, con)) // con nesnesini kullarak SQL komutunu oluştur
+                using (SqlCommand cmd = new SqlCommand(prmSQLText, con)) // con nesnesini kullanarak SQL komutunu oluştur
                 {
                     // aşağıda cmd nesnesini kullanabileceğim veri geliş/gidişini ayarlayan bir DataAdapter oluşturuyoruz
                     cmd.CommandType = CommandType.Text; // text şeklinde
@@ -84,7 +86,8 @@ namespace ADO01
                     {
                         using (DataSet dataSet = new DataSet())
                         {
-                            sqlda.Fill(dataSet); // Adaptörüm yarattığı dataSeti doldursun
+                            sqlda.Fill(dataSet);
+                            // Adaptörüm yarattığı dataSeti doldursun
                             datagwProducts.DataSource = dataSet.Tables[0]; // dataSet oluştu..içine table taşındı ve DataGridin içinde görülebilir hale geldi
                         }
                     }
@@ -95,7 +98,15 @@ namespace ADO01
         private void frmProducts_Load(object sender, EventArgs e)
         {
             PrepareGrid();
-            BindGrid();
+
+            vs_SQLCommandAna = "SELECT ProductID, ProductName, Suppliers.CompanyName,Categories.CategoryName,UnitsInStock,Discontinued FROM Products ";
+            vs_SQLCommandAna = vs_SQLCommandAna + "INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID ";
+            vs_SQLCommandAna += "INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID ";
+            vs_SQLCommandAna += "WHERE ProductID > 0 ";
+
+
+            BindGrid(vs_SQLCommandAna);
+
             GetCategory();
         }
 
@@ -103,13 +114,14 @@ namespace ADO01
         {
             // SQL tarafındaki Category Tablosundan sorgulamada kullanabilmek için sadece CategoryID ve CategoryName alanlarını almalıyım
 
-            vs_SQLCommand = "SELECT CategoryID,CategoryName FROM Categories";
-
             using (SqlConnection con = new SqlConnection(constring))
             {
+                vs_SQLCommand = "SELECT CategoryID,CategoryName FROM Categories";
+
                 using (SqlCommand cmd = new SqlCommand(vs_SQLCommand, con))
                 {
                     cmd.CommandType = CommandType.Text;
+
                     using (SqlDataAdapter sqlda = new SqlDataAdapter(cmd))
                     {
                         using (DataSet dataSet = new DataSet())
@@ -121,12 +133,9 @@ namespace ADO01
                             // data tablolarında olmayan bir satırı oluşturmak için kullanılan bir class var(DataRow classı) combo içine ilk olarak onun gözükmesini sağlıyacağım
 
                             DataRow newRow = dataSet.Tables[0].NewRow();
-                            newRow = "";
-
-
-
-
-
+                            newRow["CategoryID"]= 0;
+                            newRow["CategoryName"]= "---HEPSI---";
+                            dataSet.Tables[0].Rows.InsertAt(newRow, 0);
 
 
                             cmbQCategory.DataSource = dataSet.Tables[0];
@@ -138,7 +147,6 @@ namespace ADO01
                 }
             }
         }
-
         private void tabcProducts_DrawItem(object sender, DrawItemEventArgs e)
         {
             // Sekmenin arka planını ve yazı rengini belirleyin
@@ -172,8 +180,11 @@ namespace ADO01
             vs_SQLQuery = "";
             if (txtQProductName.Text != "") // adam textbox a bir şey girmiş mi
             {
-
+                vs_SQLQuery = " AND ProductName LIKE '%" + 
+                    txtQProductName.Text + "%'";
             }
+
+            BindGrid(vs_SQLCommandAna + vs_SQLQuery);
         }
     }
 }
