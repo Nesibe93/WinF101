@@ -284,7 +284,7 @@ namespace ADO01
 
                     cmbCategory.SelectedValue = datagwProducts.CurrentRow.Cells[4].Value; // 2.Datagrid 
 
-                    numUpdUnitInStock.Value = Convert.ToInt32();
+                    //numUpdUnitInStock.Value = Convert.ToInt32();
 
                     cmbSupplier.SelectedValue = datagwProducts.CurrentRow.Cells[5].Value;
 
@@ -306,6 +306,13 @@ namespace ADO01
         private void datagwProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             ShowData("U"); // grid üzerinde çift tıklamayla da Update olsun
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            vs_SQLUpdate = $"UPDATE Products SET ProductName='{txtProductName.Text}',CategoryID={cmbCategory.SelectedValue},SupplierID={cmbSupplier.SelectedValue},UnitInStock={numUpdUnitInStock.Value},Discontinued= {chckbDiscontinued.CheckState} WHERE ProductID={datagwProducts.CurrentRow.Cells[0].Value}";
+
+            MessageBox.Show(vs_SQLUpdate);
         }
     }
 }
