@@ -240,6 +240,7 @@
             this.btnEkle.TabIndex = 2;
             this.btnEkle.Text = "Ekle";
             this.btnEkle.UseVisualStyleBackColor = true;
+            this.btnEkle.Click += new System.EventHandler(this.btnEkle_Click);
             // 
             // tabpDetail
             // 
@@ -284,6 +285,11 @@
             // numUpdUnitInStock
             // 
             this.numUpdUnitInStock.Location = new System.Drawing.Point(135, 127);
+            this.numUpdUnitInStock.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.numUpdUnitInStock.Name = "numUpdUnitInStock";
             this.numUpdUnitInStock.Size = new System.Drawing.Size(142, 23);
             this.numUpdUnitInStock.TabIndex = 5;

@@ -104,12 +104,12 @@ namespace ADO01
         }
         #endregion
 
-        #region FormLoad
+        #region FormLoad - SQL Sorgu burada
         private void frmProducts_Load(object sender, EventArgs e)
         {
             PrepareGrid();
 
-            vs_SQLCommandAna = "SELECT ProductID,ProductName, Suppliers.CompanyName,Categories.CategoryName,Suppliers.SupplierID,UnitsInStock,Discontinued FROM Products ";
+            vs_SQLCommandAna = "SELECT ProductID, ProductName,Products.CategoryID, Categories.CategoryName,Products.SupplierID,Suppliers.CompanyName,UnitsInStock,Discontinued FROM Products ";
             vs_SQLCommandAna = vs_SQLCommandAna + "INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID ";
             vs_SQLCommandAna += "INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID ";
             vs_SQLCommandAna += "WHERE ProductID > 0 ";
@@ -279,40 +279,97 @@ namespace ADO01
             // bu metod parametrik olacak.üzerine gelen parametreye göre  (I veya U) detay sayfasında boş duran yerleri datagridden okuyarak dolduracak
             switch (prmMode)
             {
+                case "I":
+                    // Elemanların Initial değerleri
+                    txtProductName.Text = "";
+                    cmbCategory.SelectedIndex = 0; // Hepsi
+                    cmbSupplier.SelectedIndex = 0;
+                    numUpdUnitInStock.Value = 0;
+                    chckbDiscontinued.Checked = false;
+
+                    break;
+
                 case "U":
-                    txtProductName.Text = datagwProducts.CurrentRow.Cells[1].Value.ToString();
+                    txtProductName.Text = datagwProducts.CurrentRow.Cells[1].Value.ToString(); // ürün adı
 
-                    cmbCategory.SelectedValue = datagwProducts.CurrentRow.Cells[4].Value; // 2.Datagrid 
+                    cmbCategory.SelectedValue = datagwProducts.CurrentRow.Cells[2].Value; // 2. DG indexinde CategoryID duruyor
 
-                    //numUpdUnitInStock.Value = Convert.ToInt32();
+                    cmbSupplier.SelectedValue = datagwProducts.CurrentRow.Cells[4].Value; // 4. DG indexinde SupplierID duruyor.
 
-                    cmbSupplier.SelectedValue = datagwProducts.CurrentRow.Cells[5].Value;
+                    numUpdUnitInStock.Value = Convert.ToInt32(datagwProducts.CurrentRow.Cells[6].Value); // 6. DG indexinde quantity duruyor.
 
-                    chckbDiscontinued.Checked = (bool)datagwProducts.CurrentRow.Cells[6].Value;
-              
+                    chckbDiscontinued.Checked = (bool)datagwProducts.CurrentRow.Cells[7].Value; // 7. DG indexinde discontinued değeri duruyor.
+
                     break;
 
                 default:
                     break;
             }
-
             tabcProducts.SelectedTab = tabcProducts.TabPages[1]; // Details tabbed sayfasını seçiyorum..
         }
+        #endregion
 
+        #region datagwProducts_CellDoubleClick
+        private void datagwProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Mode = "U";
+            ShowData("U"); // grid üzerinde çift tıklamayla da Update olsun
+        }
+        #endregion
 
+        #region btnSave_Click
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+            switch (Mode)
+            {
+                case "U":
+                    vs_SQLUpdate = $"UPDATE Products SET ProductName='{txtProductName.Text}',CategoryID={cmbCategory.SelectedValue},SupplierID={cmbSupplier.SelectedValue},UnitInStock={numUpdUnitInStock.Value},Discontinued= {((byte)chckbDiscontinued.CheckState)} WHERE ProductID={datagwProducts.CurrentRow.Cells[0].Value}";
+
+                    break;
+
+                case "I":
+                    vs_SQLUpdate = $"INSERT INTO Products(ProductName,CategoryID,SupplierID,UnitInStock,Discontinued) VALUES('{txtProductName.Text}',{cmbCategory.SelectedValue},{cmbSupplier.SelectedValue},{numUpdUnitInStock.Value},{datagwProducts.CurrentRow.Cells[0].Value},{((byte)chckbDiscontinued.CheckState)}";
+
+                    break;
+
+                default:
+                    break;
+            }
+            // SQL cümleciklerini aynı değişkende tuttuğum için (vs_SQLUptade) aslında kayıt yazma kısmı ortak ayrı ayrı yazmama gerek yok.Tek bir blok 'aşağıdaki' olması yeterli
+            using (SqlConnection con = new SqlConnection(constring))
+            {
+                using (SqlCommand cmd = new SqlCommand(vs_SQLUpdate, con))
+                {
+                    cmd.CommandType = CommandType.Text;
+
+                    try
+                    {
+                        con.Open(); // tanımlanan connection açılıyor..
+                        cmd.ExecuteNonQuery(); // çalıştırıyor..sqltextimi sql server tarafına gönderiyor
+                        con.Close();
+                        MessageBox.Show("Bilgileriniz başarıyla kaydedilmiştir...");
+                        BindGrid(vs_SQLCommandAna); // Datagridi tekrardan dolduruyorum
+                        tabcProducts.SelectedTab = tabcProducts.TabPages[0];
+
+                    }
+                    catch (Exception message)
+                    {
+                        MessageBox.Show(message.ToString());
+
+                    }
+                }
+            }
+        }
 
         #endregion
 
-        private void datagwProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        #region btnEkle_Click
+        private void btnEkle_Click(object sender, EventArgs e)
         {
-            ShowData("U"); // grid üzerinde çift tıklamayla da Update olsun
+            ShowData("I"); // Insert -> Parametresi
         }
+        #endregion
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            vs_SQLUpdate = $"UPDATE Products SET ProductName='{txtProductName.Text}',CategoryID={cmbCategory.SelectedValue},SupplierID={cmbSupplier.SelectedValue},UnitInStock={numUpdUnitInStock.Value},Discontinued= {chckbDiscontinued.CheckState} WHERE ProductID={datagwProducts.CurrentRow.Cells[0].Value}";
-
-            MessageBox.Show(vs_SQLUpdate);
-        }
     }
 }
