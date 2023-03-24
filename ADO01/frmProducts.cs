@@ -13,6 +13,7 @@ namespace ADO01
 {
     public partial class frmProducts : Form
     {
+        #region Global kısım
         // Global kısım
         // Aşağıdaki değişken Veritabanına bağlanabilmek için gerekli olan bağlantı cümleciğidir.Şu makinaya ..şu databaseden bağlanmak istiyorum
         string constring = @"Data Source=DESKTOP-V653CLI\SQLEXPRESS01;Initial Catalog=Northwind;Integrated Security=True";
@@ -20,18 +21,23 @@ namespace ADO01
         string vs_SQLCommandAna = ""; // SQL komutlarımı içerecek
         string vs_SQLCommand = ""; // combo için
         string vs_SQLQuery = ""; // SQL Query texti içerecek
+        string vs_SQLUpdate = "";
         string Mode = "";
+
+        #endregion
 
         public frmProducts()
         {
             InitializeComponent();
         }
-
+        #region btnClose_Click
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        #endregion
 
+        #region PrepareGrid()
         private void PrepareGrid()
         {
             datagwProducts.AutoGenerateColumns = true; // datagrid in otomatik olarak database tablosuna bakıp gridin kolonlarını yaratmasını istemiyorum. Manuel
@@ -56,7 +62,9 @@ namespace ADO01
             // DataGridin satırlarının yüksekliğini ve genişliğini yasaklama
             datagwProducts.AllowUserToResizeRows = false;
         }
+        #endregion
 
+        #region BindGrid(string prmSQLText)
         private void BindGrid(string prmSQLText)
         {
             // DataGrid i dolduran bölüm
@@ -75,7 +83,7 @@ namespace ADO01
                 //vs_SQLCommand = vs_SQLCommand + "INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID ";
                 //vs_SQLCommand += "INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID ";
                 //   vs_SQLCommand += "WHERE ProductID > 0";
-                
+
 
                 using (SqlCommand cmd = new SqlCommand(prmSQLText, con)) // con nesnesini kullanarak SQL komutunu oluştur
                 {
@@ -94,12 +102,14 @@ namespace ADO01
                 }
             }
         }
+        #endregion
 
+        #region FormLoad
         private void frmProducts_Load(object sender, EventArgs e)
         {
             PrepareGrid();
 
-            vs_SQLCommandAna = "SELECT ProductID, ProductName, Suppliers.CompanyName,Categories.CategoryName,UnitsInStock,Discontinued FROM Products ";
+            vs_SQLCommandAna = "SELECT ProductID,ProductName, Suppliers.CompanyName,Categories.CategoryName,Suppliers.SupplierID,UnitsInStock,Discontinued FROM Products ";
             vs_SQLCommandAna = vs_SQLCommandAna + "INNER JOIN Suppliers ON Products.SupplierID = Suppliers.SupplierID ";
             vs_SQLCommandAna += "INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID ";
             vs_SQLCommandAna += "WHERE ProductID > 0 ";
@@ -107,9 +117,11 @@ namespace ADO01
 
             BindGrid(vs_SQLCommandAna);
             GetCategory();
-            GetSuppliers();
+            GetSupplier();
         }
+        #endregion
 
+        #region GetCategory()
         private void GetCategory()
         {
             // SQL tarafındaki Category Tablosundan sorgulamada kullanabilmek için sadece CategoryID ve CategoryName alanlarını almalıyım
@@ -133,22 +145,28 @@ namespace ADO01
                             // data tablolarında olmayan bir satırı oluşturmak için kullanılan bir class var(DataRow classı) combo içine ilk olarak onun gözükmesini sağlıyacağım
 
                             DataRow newRow = dataSet.Tables[0].NewRow();
-                            newRow["CategoryID"]= 0;
-                            newRow["CategoryName"]= "---HEPSI---";
-                            dataSet.Tables[0].Rows.InsertAt(newRow, 0);
+                            newRow["CategoryID"] = 0;
+                            newRow["CategoryName"] = "---HEPSI---";
+                            dataSet.Tables[0].Rows.InsertAt(newRow, 0); // hazırlamış olduğum aslında Database tablosunda olmayan kayıdı comboboxın 0 indeksine koyuyorum ki ilk o gözüksün.
 
 
                             cmbQCategory.DataSource = dataSet.Tables[0];
                             cmbQCategory.ValueMember = "CategoryID";
                             cmbQCategory.DisplayMember = "CategoryName";
+                            // Detay Sayfasındaki Category ComboBoxı
+                            cmbCategory.DataSource = dataSet.Tables[0];
+                            cmbCategory.ValueMember = "CategoryID";
+                            cmbCategory.DisplayMember = "CategoryName";
                         }
-                      
+
                     }
                 }
             }
         }
+        #endregion
 
-        private void GetSuppliers()
+        #region GetSupplier()
+        private void GetSupplier()
         {
             // SQL tarafındaki Category Tablosundan sorgulamada kullanabilmek için sadece CategoryID ve CategoryName alanlarını almalıyım
 
@@ -173,20 +191,25 @@ namespace ADO01
                             DataRow newRow = dataSet.Tables[0].NewRow();
                             newRow["SupplierID"] = 0;
                             newRow["CompanyName"] = "---HEPSI---";
-                            dataSet.Tables[0].Rows.InsertAt(newRow, 0);
-
+                            dataSet.Tables[0].Rows.InsertAt(newRow, 0); 
 
                             cmbQSupplier.DataSource = dataSet.Tables[0];
                             cmbQSupplier.ValueMember = "SupplierID";
                             cmbQSupplier.DisplayMember = "CompanyName";
+
+                            // Detay sayfasındaki Supplier ComboBoxı
+                            cmbSupplier.DataSource = dataSet.Tables[0];
+                            cmbSupplier.ValueMember = "SupplierID";
+                            cmbSupplier.DisplayMember = "CompanyName";
                         }
 
                     }
                 }
             }
         }
+        #endregion
 
-        #region TabControl
+        /*#region TabControl
         // TabControl drawmode->ownerdrawfixed'da sekmelerin ismi gözükmüyor.Çiziyoruz
         private void tabcProducts_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -212,14 +235,15 @@ namespace ADO01
             foreBrush.Dispose();
         }
 
-        #endregion
+        #endregion */
 
+        #region btnQuery_Click
         private void btnQuery_Click(object sender, EventArgs e)
         {
             vs_SQLQuery = "";
             if (txtQProductName.Text != "") // adam textbox a bir şey girmiş mi
             {
-                vs_SQLQuery += "AND ProductName LIKE '%" + 
+                vs_SQLQuery += "AND ProductName LIKE '%" +
                     txtQProductName.Text + "%'";
             }
 
@@ -228,7 +252,7 @@ namespace ADO01
             if (cmbQCategory.SelectedIndex > 0)
             {
                 vs_SQLQuery += "AND Products.CategoryID =" + cmbQCategory.SelectedValue;
-                
+
             }
 
             if (cmbQSupplier.SelectedIndex > 0)
@@ -240,6 +264,48 @@ namespace ADO01
             BindGrid(vs_SQLCommandAna + vs_SQLQuery);
 
         }
+        #endregion
 
+        #region btnUpdate_Click
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            ShowData("U");
+        }
+        #endregion
+
+        #region ShowData(string prmMode)
+        private void ShowData(string prmMode)
+        {
+            // bu metod parametrik olacak.üzerine gelen parametreye göre  (I veya U) detay sayfasında boş duran yerleri datagridden okuyarak dolduracak
+            switch (prmMode)
+            {
+                case "U":
+                    txtProductName.Text = datagwProducts.CurrentRow.Cells[1].Value.ToString();
+
+                    cmbCategory.SelectedValue = datagwProducts.CurrentRow.Cells[4].Value; // 2.Datagrid 
+
+                    numUpdUnitInStock.Value = Convert.ToInt32();
+
+                    cmbSupplier.SelectedValue = datagwProducts.CurrentRow.Cells[5].Value;
+
+                    chckbDiscontinued.Checked = (bool)datagwProducts.CurrentRow.Cells[6].Value;
+              
+                    break;
+
+                default:
+                    break;
+            }
+
+            tabcProducts.SelectedTab = tabcProducts.TabPages[1]; // Details tabbed sayfasını seçiyorum..
+        }
+
+
+
+        #endregion
+
+        private void datagwProducts_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ShowData("U"); // grid üzerinde çift tıklamayla da Update olsun
+        }
     }
 }
